@@ -96,6 +96,34 @@ IgnoreDex	auto	Not affected by dex.
 IgnoreStatus	auto	Not affected by statuses (Suffragium, etc).
 IgnoreItemBonus	auto	Not affected by item bonuses (equips, cards).
 
+// Add Required weapon 
+[SkillRequireWeaponType]
+All	0xFFFFFF	All	hide
+Fist	auto
+Dagger	auto
+1hSword	auto
+2hSword	auto
+1hSpear	auto
+2hSpear	auto
+1hAxe	auto
+2hAxe	auto
+Mace	auto
+2hMace	auto
+Staff	auto
+Bow	auto
+Knuckle	auto
+Musical	auto
+Whip	auto
+Book	auto
+Katar	auto
+Revolver	auto
+Rifle	auto
+Gatling	auto
+Shotgun	auto
+Grenade	auto
+Huuma	auto
+2hStaff	auto
+
 [WeaponType]
 Fist	0
 Dagger	auto

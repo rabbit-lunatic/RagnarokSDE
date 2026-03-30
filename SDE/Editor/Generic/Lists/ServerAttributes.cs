@@ -198,6 +198,8 @@ namespace SDE.Editor.Generic.Lists
         public static readonly DbAttribute ActiveInstance = new ServerSkillAttributes(new DbAttribute("Maxcount", typeof(LevelIntEditProperty<int>), "0", "Max active")) { DataConverter = ValueConverters.GetIntSetZeroString, Description = "Max amount of skill instances to place on the ground when player_land_skill_limit/monster_land_skill_limit is enabled. For skills that attack using a path, this is the path length to be used." };
         public static readonly DbAttribute AttackType = new ServerSkillAttributes(new DbAttribute("AttackType", typeof(AttackTypeType), "none", "Attack type")) { DataConverter = ValueConverters.GetIntSetSkillAttackString };
         public static readonly DbAttribute Knockback = new ServerSkillAttributes(new DbAttribute("Blowcount", typeof(LevelIntEditProperty<int>), "0", "Knockback")) { DataConverter = ValueConverters.GetIntSetZeroString, Description = "The amount of cells the skill's knockback will apply." };
+        // Add GiveAp
+        public static readonly DbAttribute GiveAp = new ServerSkillAttributes(new DbAttribute("GiveAp", typeof(LevelIntEditProperty<int>), "0", "Give AP")) { DataConverter = ValueConverters.GetSetZeroString, Description = "Gives AP on successful skill cast." };
         public static readonly DbAttribute Inf3 = new ServerSkillAttributes(new DbAttribute("Inf3", typeof(CustomSkillType3Property), "0", "Renewal behavior")) { DataConverter = ValueConverters.GetHexToIntSetInt, IsSkippable = true };
         public static readonly DbAttribute Name = new ServerSkillAttributes(new DbAttribute("Name", typeof(string), "", "Name")) { DataConverter = ValueConverters.StringTrimEmptyDefault };
         public static readonly DbAttribute Desc = new ServerSkillAttributes(new DbAttribute("Description", typeof(string), "", "Description")) { IsDisplayAttribute = true };
@@ -225,9 +227,14 @@ namespace SDE.Editor.Generic.Lists
         public static readonly DbAttribute RequireSpCost = new ServerSkillAttributes(new DbAttribute("SpCost", typeof(LevelIntEditProperty<int>), "0", "SP Cost")) { DataConverter = ValueConverters.GetSetZeroString };
         public static readonly DbAttribute RequireHpRateCost = new ServerSkillAttributes(new DbAttribute("HpRateCost", typeof(LevelIntEditProperty<int>), "0", "HP Rate Cost")) { DataConverter = ValueConverters.GetSetZeroString };
         public static readonly DbAttribute RequireSpRateCost = new ServerSkillAttributes(new DbAttribute("SpRateCost", typeof(LevelIntEditProperty<int>), "0", "SP Rate Cost")) { DataConverter = ValueConverters.GetSetZeroString };
-        public static readonly DbAttribute RequireZenyCost = new ServerSkillAttributes(new DbAttribute("ZenyCost", typeof(LevelIntEditProperty<int>), "0", "Zeny Cost")) { DataConverter = ValueConverters.GetSetZeroString };
 
-        public static readonly DbAttribute RequireWeapons = new ServerSkillAttributes(new DbAttribute("RequireWeapons", typeof(PreviewWeaponFlagProperty<int, WeaponType>), "0xFFFFFF", "Required weapons")) { DataConverter = ValueConverters.GetHexToIntSetInt };
+        // Add ApCost, ApRateCost 
+        public static readonly DbAttribute RequireApCost = new ServerSkillAttributes(new DbAttribute("ApCost", typeof(LevelIntEditProperty<int>), "0", "AP Cost")) { DataConverter = ValueConverters.GetSetZeroString };
+        public static readonly DbAttribute RequireApRateCost = new ServerSkillAttributes(new DbAttribute("ApRateCost", typeof(LevelIntEditProperty<int>), "0", "AP Rate Cost")) { DataConverter = ValueConverters.GetSetZeroString };
+        
+        public static readonly DbAttribute RequireZenyCost = new ServerSkillAttributes(new DbAttribute("ZenyCost", typeof(LevelIntEditProperty<int>), "0", "Zeny Cost")) { DataConverter = ValueConverters.GetSetZeroString };
+        // Fixed required weopon
+        public static readonly DbAttribute RequireWeapons = new ServerSkillAttributes(new DbAttribute("RequireWeapons", typeof(PreviewWeaponFlagProperty<int, SkillRequireWeaponType>), "0xFFFFFF", "Required weapons")) { DataConverter = ValueConverters.GetHexToIntSetInt };
         public static readonly DbAttribute RequireAmmoTypes = new ServerSkillAttributes(new DbAttribute("RequireAmmoTypes", typeof(PreviewGenericDefinedFlagProperty<int, AmmoType>), "0", "Required ammo\r\ntypes")) { DataConverter = ValueConverters.GetHexToIntSetInt };
         public static readonly DbAttribute RequireAmmoAmount = new ServerSkillAttributes(new DbAttribute("RequireAmmoAmount", typeof(LevelIntEditProperty<int>), "0", "Required ammo\r\namount")) { DataConverter = ValueConverters.GetSetZeroString };
         public static readonly DbAttribute RequireState = new ServerSkillAttributes(new DbAttribute("RequireState", typeof(RequiredStateTypeNew), "0", "Required state")) { DataConverter = ValueConverters.GetIntSetZeroString };
@@ -251,6 +258,9 @@ namespace SDE.Editor.Generic.Lists
         public static readonly DbAttribute DISPLAY_Casttime = new ServerSkillAttributes(new DbAttribute("DISPLAY", typeof(InvisibleProperty<int>), "", "Skill Duration")) { DataConverter = ValueConverters.GetSetZeroString };
         public static readonly DbAttribute DISPLAY_Unit = new ServerSkillAttributes(new DbAttribute("DISPLAY", typeof(InvisibleProperty<int>), "", "Unit")) { DataConverter = ValueConverters.GetSetZeroString };
         public static readonly DbAttribute DISPLAY_Others = new ServerSkillAttributes(new DbAttribute("DISPLAY", typeof(InvisibleProperty<int>), "", "Others")) { DataConverter = ValueConverters.GetSetZeroString };
+
+        // Add Status
+        public static readonly DbAttribute Status = new ServerSkillAttributes(new DbAttribute("Status", typeof(string), "", "Status")) { DataConverter = ValueConverters.StringTrimEmptyDefault, Description = "Status Change that is associated to the skill." };
 
         private ServerSkillAttributes(DbAttribute attribute)
             : base(attribute)

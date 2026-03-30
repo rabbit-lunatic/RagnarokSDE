@@ -452,7 +452,13 @@ namespace SDE.Editor.Generic.Lists {
 		//[Description("2hStaff")] En23 = 1 << 23,
 	}
 
-	[Description("Ammo edit")]
+	// skill_db required weapon
+    [Description("Required weapons edit")]
+    public enum SkillRequireWeaponType
+    {
+    }
+
+    [Description("Ammo edit")]
 	public enum AmmoType {
 		//[Description("Arrow")] En0 = 1 << 0,
 		//[Description("Dagger")] En1 = 1 << 1,

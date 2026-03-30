@@ -1731,7 +1731,7 @@ namespace SDE.Editor.Generic.Core
                     ServerSkillAttributes.HitCount.Index, 1, ServerSkillAttributes.CastInterrupt.Index, 1,
                     ServerSkillAttributes.DefReduc.Index, 1, ServerSkillAttributes.Inf2New.Index, 1,
                     ServerSkillAttributes.ActiveInstance.Index, 1, ServerSkillAttributes.AttackType.Index, 1,
-                    ServerSkillAttributes.Knockback.Index, 1, -1, 1,
+                    ServerSkillAttributes.Knockback.Index, 1, ServerSkillAttributes.GiveAp.Index, 1,
                     ServerSkillAttributes.Name.Index, 1, ServerSkillAttributes.Desc.Index, 1,
                     ServerSkillAttributes.DISPLAY_Casttime.Index, 1, -1, 1,
                     ServerSkillAttributes.CastTimeFlags.Index, 1, ServerSkillAttributes.CastDelayFlags.Index, 1,
@@ -1739,8 +1739,9 @@ namespace SDE.Editor.Generic.Core
                     ServerSkillAttributes.AfterCastActDelay.Index, 4,
                     ServerSkillAttributes.FixedCastTime.Index, 1, -1, 1,
                     ServerSkillAttributes.DISPLAY_Requirement.Index, 1, -1, 1,
-                    ServerSkillAttributes.RequireHpCost.Index, 1, ServerSkillAttributes.RequireSpCost.Index, 1,
-                    ServerSkillAttributes.RequireHpRateCost.Index, 1, ServerSkillAttributes.RequireSpRateCost.Index, 1,
+                    ServerSkillAttributes.RequireHpCost.Index, 1, ServerSkillAttributes.RequireHpRateCost.Index, 1,
+                    ServerSkillAttributes.RequireSpCost.Index, 1, ServerSkillAttributes.RequireSpRateCost.Index, 1,
+                    ServerSkillAttributes.RequireApCost.Index, 1, ServerSkillAttributes.RequireApRateCost.Index, 1,
                     ServerSkillAttributes.RequireMaxHpTrigger.Index, 1, ServerSkillAttributes.RequireZenyCost.Index, 1,
                     ServerSkillAttributes.RequireAmmoTypes.Index, 1, ServerSkillAttributes.RequireAmmoAmount.Index, 1,
                     ServerSkillAttributes.RequireWeapons.Index, 1, ServerSkillAttributes.RequireItemCost.Index, 1,
@@ -1754,6 +1755,7 @@ namespace SDE.Editor.Generic.Core
                     ServerSkillAttributes.DISPLAY_Others.Index, 1, -1, 1,
                     ServerSkillAttributes.CopyFlags.Index, 1, ServerSkillAttributes.CopyFlagsRemovedRequirement.Index, 1,
                     ServerSkillAttributes.NoNearNPCRange.Index, 1, ServerSkillAttributes.NoNearNPCType.Index, 1,
+                    ServerSkillAttributes.Status.Index, 1,
                 };
 
                 tab.Clear();

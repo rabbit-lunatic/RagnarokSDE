@@ -2537,7 +2537,7 @@ namespace SDE.Editor.Generic.UI.FormatConverters
         }
     }
 
-    public class PreviewWeaponFlagProperty<T, TEnum> : PreviewGenericFlagProperty<T, TEnum>
+    /*public class PreviewWeaponFlagProperty<T, TEnum> : PreviewGenericFlagProperty<T, TEnum>
     {
         public override bool _handleInput(ref string input, long value, List<long> valuesEnum, List<Enum> values)
         {
@@ -2550,6 +2550,70 @@ namespace SDE.Editor.Generic.UI.FormatConverters
             }
 
             return false;
+        }
+    }*/
+
+    // Fix Required weopon display
+    public class PreviewWeaponFlagProperty<T, TEnum> : CustomProperty<T>
+    {
+        public override void OnInitialized()
+        {
+            var preview = new PreviewField<T>(this);
+
+            preview.PreviewFunc = delegate (Database.Tuple obj, string input, ref string output) {
+                long value = 0;
+
+                if (input != "" && !Int64.TryParse(input, out value))
+                    return false;
+
+                if (value < 0)
+                    return false;
+
+                var flagData = FlagsManager.GetFlag<TEnum>();
+
+                if (flagData == null)
+                    return false;
+
+                var visibleFlags = flagData.Values
+                    .Where(p => (p.DataFlag & FlagDataProperty.Hide) == 0)
+                    .ToList();
+
+                long vAll = visibleFlags.Select(p => p.Value).Aggregate(0L, (current, v) => current | v);
+
+                if (value == vAll)
+                {
+                    output = "All";
+                    return true;
+                }
+
+                foreach (var flag in visibleFlags)
+                {
+                    if ((flag.Value & value) == flag.Value)
+                    {
+                        output += flag.Name + ", ";
+                    }
+                }
+
+                output = output.Trim(',', ' ');
+
+                if (output == "")
+                    output = "None";
+
+                return true;
+            };
+        }
+
+        public override void ButtonClicked()
+        {
+            GenericFlagDialog dialog = new GenericFlagDialog(
+                this._attribute,
+                _textBox.Text,
+                null,
+                FlagsManager.GetFlag<TEnum>(),
+                "Required weapons edit"
+            );
+
+            InputWindowHelper.Edit(dialog, _textBox, _button);
         }
     }
 
