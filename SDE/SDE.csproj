@@ -86,6 +86,10 @@
       <HintPath>Files\GrfToWpfBridge.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Hardcodet.NotifyIcon.Wpf">
+      <HintPath>Files\Hardcodet.NotifyIcon.Wpf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ICSharpCode.AvalonEdit">
       <HintPath>Files\ICSharpCode.AvalonEdit.dll</HintPath>
       <Private>False</Private>
@@ -815,6 +819,7 @@
     <EmbeddedResource Include="Files\Compressed\TokeiLibrary.dll" />
     <EmbeddedResource Include="Files\Compressed\Utilities.dll" />
     <EmbeddedResource Include="Files\Compressed\zlib.net.dll" />
+    <EmbeddedResource Include="Files\Compressed\Hardcodet.NotifyIcon.Wpf.dll" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\cut.png" />

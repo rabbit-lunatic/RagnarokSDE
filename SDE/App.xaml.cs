@@ -16,6 +16,9 @@ using SDE.ApplicationConfiguration;
 using SDE.Editor;
 using TokeiLibrary;
 using Utilities;
+using Hardcodet.Wpf.TaskbarNotification;
+using SDE.View;
+using System.Windows.Controls;
 
 namespace SDE
 {
@@ -24,6 +27,8 @@ namespace SDE
     /// </summary>
     public partial class App : Application
     {
+        private TaskbarIcon _trayIcon;
+
         public App()
         {
             Configuration.ConfigAsker = SdeAppConfiguration.ConfigAsker;
@@ -224,6 +229,7 @@ namespace SDE
             }
 
             base.OnStartup(e);
+            _initializeTrayIcon();
         }
 
         private bool _installTheme()
@@ -238,6 +244,54 @@ namespace SDE
             {
                 return false;
             }
+        }
+
+        private void _initializeTrayIcon()
+        {
+            if (_trayIcon != null)
+                return;
+
+            _trayIcon = new TaskbarIcon();
+            _trayIcon.ToolTipText = "Server database editor";
+            _trayIcon.IconSource = new BitmapImage(new Uri("pack://application:,,,/Resources/sde.ico", UriKind.Absolute));
+
+            ContextMenu menu = new ContextMenu();
+
+            MenuItem miOpen = new MenuItem();
+            miOpen.Header = "Open";
+            miOpen.Click += delegate {
+                if (SdeEditor.Instance != null)
+                {
+                    SdeEditor.Instance.RestoreFromTray();
+                }
+            };
+
+            MenuItem miExit = new MenuItem();
+            miExit.Header = "Exit";
+            miExit.Click += delegate {
+                if (SdeEditor.Instance != null)
+                {
+                    SdeEditor.Instance.ExitFromTray();
+                }
+            };
+
+            menu.Items.Add(miOpen);
+            menu.Items.Add(new Separator());
+            menu.Items.Add(miExit);
+
+            _trayIcon.ContextMenu = menu;
+            _trayIcon.Visibility = Visibility.Visible;
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            if (_trayIcon != null)
+            {
+                _trayIcon.Dispose();
+                _trayIcon = null;
+            }
+
+            base.OnExit(e);
         }
     }
 }

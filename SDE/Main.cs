@@ -43,47 +43,6 @@ namespace SDE
         [STAThread]
         public static void Main(string[] args)
         {
-            /*AppDomain.CurrentDomain.AssemblyResolve += (sender, arguments) => {
-                AssemblyName assemblyName = new AssemblyName(arguments.Name);
-
-                if (assemblyName.Name.EndsWith(".resources"))
-                    return null;
-
-                string resourceName = "SDE.Files." + assemblyName.Name + ".dll";
-
-                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
-                {
-                    if (stream != null)
-                    {
-                        byte[] assemblyData = new Byte[stream.Length];
-                        stream.Read(assemblyData, 0, assemblyData.Length);
-                        return Assembly.Load(assemblyData);
-                    }
-                }
-
-                string compressedResourceName = "SDE.Files.Compressed." + new AssemblyName(arguments.Name).Name + ".dll";
-
-                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(compressedResourceName))
-                {
-                    if (stream != null)
-                    {
-                        byte[] assemblyData = new Byte[stream.Length];
-                        stream.Read(assemblyData, 0, assemblyData.Length);
-                        var size = Decompress(assemblyData);
-                        //File.AppendAllText("output.log", "Loading " + compressedResourceName + ", decompressed: " + size.Length + "\n");
-                        return Assembly.Load(size);
-                    }
-                }
-
-                if (_registeredAssemblies.ToList().Contains(assemblyName.Name))
-                {
-                    MessageBox.Show("Failed to load assembly : " + resourceName + "\r\n\r\nThe application will now shutdown.", "Assembly loader");
-                    Process.GetCurrentProcess().Kill();
-                }
-
-                return null;
-            }; */
-
             AppDomain.CurrentDomain.AssemblyResolve += (sender, arguments) => {
                 AssemblyName assemblyName = new AssemblyName(arguments.Name);
 
